@@ -1,46 +1,89 @@
-# Getting Started with Create React App
+# GitHub User Search App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple web application built with React for searching GitHub users based on their usernames
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Components](#components)
+  - [Functions](#functions)
 
-### `yarn start`
+## Introduction
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This web application allows users to search for GitHub users by entering their usernames. It provides a clean and straightforward user interface, fetching user data from the GitHub API and displaying the results in a collapsible format.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Features
 
-### `yarn test`
+- User-friendly interface.
+- Real-time search as you type.
+- Displays up to 5 search results.
+- Collapsible user cards for detailed information.
+- Loading spinner during API requests.
+- Error message for unfound users.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `yarn build`
+To run this application locally, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone this repository to your local machine:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/Zaldee69/test-atask.git
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Navigate to the project directory:
 
-### `yarn eject`
+   ```bash
+   cd your-repo
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Install the required dependencies:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   yarn install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Usage
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Start the development server:
 
-## Learn More
+   ```bash
+   yarn start
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Open your web browser and visit `http://localhost:3000` to access the application.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Enter a GitHub username in the input field and click the "Search" button.
+
+4. The application will fetch and display the user's information in collapsible cards.
+
+### Components
+
+#### `Collapse` Component (`./components/Collapsible`)
+
+- **Description**: The `Collapse` component is used to display the search results in a collapsible format.
+
+#### `Spinner` Component (`./public/icons/Spinner`)
+
+- **Description**: The `Spinner` component is used to display a loading spinner during API requests.
+
+### Functions
+
+#### `handleSearchUsers(e: React.FormEvent<HTMLFormElement>)`
+
+- **Parameters**:
+  - `e` (React.FormEvent<HTMLFormElement>): The form event triggered when the user submits the search form.
+
+- **Description**: This function is responsible for handling the user search. It performs the following steps:
+  1. Prevents the default form submission behavior.
+  2. Clears the `wasFetchedIndex` array.
+  3. Retrieves the username entered by the user.
+  4. Checks if the entered username is the same as the previous one to prevent redundant searches.
+  5. Sets the `isLoading` state to `true`.
+  6. Makes an API request to GitHub's user search endpoint with the entered username.
+  7. Updates the `users` state with the search results.
+  8. Updates the `searchedUsername` variable.
+  9. Sets `isLoading` back to `false`.
