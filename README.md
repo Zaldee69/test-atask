@@ -62,13 +62,24 @@ To run this application locally, follow these steps:
 
 ### Components
 
-#### `Collapse` Component (`./components/Collapsible`)
+#### `Collapsible` Component
+- **Description**: This component serves as a container for rendering multiple `CollapsibleContent` components.
+- **Props**:
+  - `data` (`IUsers[]`): An array of GitHub user data.
+  - `wasFetchedIndex` (`Number[]`): An array to track which users' repositories have been fetched.
 
-- **Description**: The `Collapse` component is used to display the search results in a collapsible format.
-
-#### `Spinner` Component (`./public/icons/Spinner`)
+#### `Spinner` Icons (`./public/icons/Spinner`)
 
 - **Description**: The `Spinner` component is used to display a loading spinner during API requests.
+
+#### `CollapsibleContent` Component
+- **Description**: This component represents an individual user entry. It displays the user's name and repositories when expanded.
+- **Props**:
+  - `toggle` (`(idx: number) => void`): A function to toggle the collapse state.
+  - `activeCollapse` (`number | null`): The index of the currently active (expanded) user entry.
+  - `id` (`number`): The unique identifier for the user entry.
+  - `name` (`string`): The GitHub username.
+  - `wasFetchedIndex` (`Number[]`): An array to track which users' repositories have been fetched.
 
 ### Functions
 
@@ -87,3 +98,7 @@ To run this application locally, follow these steps:
   7. Updates the `users` state with the search results.
   8. Updates the `searchedUsername` variable.
   9. Sets `isLoading` back to `false`.
+ 
+#### `fetchRepos`
+
+- **Description**: This function is responsible for fetching user repositories from the GitHub API. It only fetches repositories if the user entry is expanded and if the repositories haven't been fetched before.
